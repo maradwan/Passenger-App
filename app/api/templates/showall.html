@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Welcome to Passengers App</title>
+ <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div class="header">
+         <nav>
+           <ul class="nav nav-pills pull-right">
+             <li role="presentation" class="active"><a href="{{ url_for('showall') }}">All Passengers</a></li>
+             <li role="presentation" class="active"><a href="{{ url_for('swagger_ui.show') }}">Swagger</a></li>
+             <li role="presentation" class="active"><a href="{{ url_for('home') }}">Home</a></li>
+ 
+ 
+           </ul>
+         </nav>
+<h2>Passengers List</h2>
+      <table>
+         <thead>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<table data-order='[[ 1, "asc" ]]' data-page-length='25'>
+    <thead>
+          <body>
+             <tr>
+               <th>UUID <span class="glyphicon glyphicon-user"></span>
+               <th>Survived</th>
+               <th>Passenger Class</th>
+               <th>Name</th>
+               <th>Sex</th>
+               <th>Age</th>
+               <th>Siblings Or Spouses Aboard</th>
+               <th>Parents Or Children Aboard</th>
+               <th>Fare</th> 
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for passenger in passengers %}
+               <tr>
+                  <td>{{ passenger.uuid }}</td>
+                  <td>{{ passenger.survived }}</td>
+                  <td>{{ passenger.passengerClass }}</td>
+                  <td>{{ passenger.name }}</td>
+                  <td>{{ passenger.sex }}</td>
+                  <td>{{ passenger.age }}</td>
+                  <td>{{ passenger.siblingsOrSpousesAboard }}</td>
+                  <td>{{ passenger.parentsOrChildrenAboard }}</td>
+                  <td>{{ passenger.fare }}</td>
+
+               </tr>
+            {% endfor %}
+         </tbody>
