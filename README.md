@@ -14,15 +14,10 @@ Clone the repo
     $ git clone git@github.com:maradwan/Passenger-App.git
     $ docker-compose up -d
 
-
-# Install pytest for testing
-* pip install pytest
-
 ## Run Testing
 
     # To Test
     $ pytest -vv test.py
-
 
 
 ## Add new data 
