@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    name: app
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: maradwan/passenger-app:v1.0
+        ports:
+        - containerPort: 5000
+        livenessProbe:
+          httpGet:
+             path: /
+             port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+        env:
+        - name: SQLALCHEMY_DATABASE_URI
+          value: "mysql://root:password@db/passenger"
+        - name: APP_SECRET_KEY
+          value: "xi3aiGiewip1ze7MFei9haotvoo9Wo4k"
+        - name: SQLALCHEMY_TRACK_MODIFICATIONS
+          value: "True"          
+        - name: FILENAME_CSV 
+          value: "data.csv"          
